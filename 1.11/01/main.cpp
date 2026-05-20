@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 int main() {
@@ -10,6 +10,8 @@ int main() {
 	std::string surname{};
 	std::cin >> surname;
 
-	std::cout << "Здравствуйте, " << name << " " << surname << "!" << std::endl;
+	std::string name_surname = name + " " + surname;
+
+	std::cout << "Здравствуйте, " << name_surname << "!" << std::endl;
 	return EXIT_SUCCESS;
 }
