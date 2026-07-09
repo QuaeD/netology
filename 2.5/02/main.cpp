@@ -1,11 +1,11 @@
-﻿#include <iostream>
+#include <iostream>
 #include <string>
 
 class Figure
 {
 public:
 	Figure() : sides_count{ 0 }, name{ "Фигура" } {}
-
+	virtual ~Figure() = default;
 	int getSidesCount() const {
 		return sides_count;
 	}
@@ -138,34 +138,36 @@ public:
 	Rhombus(int a, int A, int B) : Quadrangle{ a, a, a, a, A, B, A, B, "Ромб" } {}
 };
 
-void printInfo(Triangle& triangle) {
-	std::cout << triangle.getName() << ":" << std::endl;
-	std::cout << "Стороны: " <<
-		"a=" << triangle.get_a() << " " <<
-		"b=" << triangle.get_b() << " " <<
-		"c=" << triangle.get_c() << std::endl;
+void printInfo(Figure* figure) {
+	std::cout << figure->getName() << ":" << std::endl;
+
+	if (Triangle* triangle = dynamic_cast<Triangle*>(figure)) {
+		std::cout << "Стороны: " <<
+			"a=" << triangle->get_a() << " " <<
+			"b=" << triangle->get_b() << " " <<
+			"c=" << triangle->get_c() << std::endl;
 
 
-	std::cout << "Углы: " <<
-		"A=" << triangle.get_A() << " " <<
-		"B=" << triangle.get_B() << " " <<
-		"C=" << triangle.get_C() << std::endl;
-}
+		std::cout << "Углы: " <<
+			"A=" << triangle->get_A() << " " <<
+			"B=" << triangle->get_B() << " " <<
+			"C=" << triangle->get_C() << std::endl;
+	}
 
-void printInfo(Quadrangle& quadrangle) {
-	std::cout << quadrangle.getName() << ":" << std::endl;
-	std::cout << "Стороны: " <<
-		"a=" << quadrangle.get_a() << " " <<
-		"b=" << quadrangle.get_b() << " " <<
-		"c=" << quadrangle.get_c() << " " <<
-		"d=" << quadrangle.get_d() << std::endl;
+	else if (Quadrangle* quadrangle = dynamic_cast<Quadrangle*>(figure)) {
+		std::cout << "Стороны: " <<
+			"a=" << quadrangle->get_a() << " " <<
+			"b=" << quadrangle->get_b() << " " <<
+			"c=" << quadrangle->get_c() << " " <<
+ 			"d=" << quadrangle->get_d() << std::endl;
 
 
-	std::cout << "Углы: " <<
-		"A=" << quadrangle.get_A() << " " <<
-		"B=" << quadrangle.get_B() << " " <<
-		"C=" << quadrangle.get_C() << " " <<
-		"D=" << quadrangle.get_D() << std::endl;
+		std::cout << "Углы: " <<
+			"A=" << quadrangle->get_A() << " " <<
+			"B=" << quadrangle->get_B() << " " <<
+			"C=" << quadrangle->get_C() << " " <<
+			"D=" << quadrangle->get_D() << std::endl;
+	}
 }
 
 int main() {
@@ -179,31 +181,31 @@ int main() {
 	Parallelogram parallelogram{ 20, 30, 30, 40 };
 	Rhombus rhombus{ 30, 30, 40 };
 
-	printInfo(triangle);
+	printInfo(&triangle);
 	std::cout << std::endl;
 
-	printInfo(right_triangle);
+	printInfo(&right_triangle);
 	std::cout << std::endl;
 
-	printInfo(isosceles_triangle);
+	printInfo(&isosceles_triangle);
 	std::cout << std::endl;
 
-	printInfo(equilateral_triangle);
+	printInfo(&equilateral_triangle);
 	std::cout << std::endl;
 
-	printInfo(quadrangle);
+	printInfo(&quadrangle);
 	std::cout << std::endl;
 
-	printInfo(rectangle);
+	printInfo(&rectangle);
 	std::cout << std::endl;
 
-	printInfo(square);
+	printInfo(&square);
 	std::cout << std::endl;
 
-	printInfo(parallelogram);
+	printInfo(&parallelogram);
 	std::cout << std::endl;
 
-	printInfo(rhombus);
+	printInfo(&rhombus);
 
 	return EXIT_SUCCESS;
 }
