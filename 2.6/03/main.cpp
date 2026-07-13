@@ -1,5 +1,3 @@
-﻿#include <iostream>
-
 #include "equilateral_triangle.h"
 #include "figure.h"
 #include "isosceles_triangle.h"
@@ -10,6 +8,8 @@
 #include "square.h"
 #include "triangle.h"
 #include "quadrangle.h"
+
+﻿#include <iostream>
 
 void printInfo(Figure* figure) {
 	std::cout << figure->getName() << ":" << std::endl;
