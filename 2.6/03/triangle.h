@@ -1,9 +1,9 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
 
-#include <string>
-
 #include "figure.h"
+
+#include <string>
 
 class Triangle : public Figure
 {
